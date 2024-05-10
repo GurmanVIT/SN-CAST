@@ -1,0 +1,89 @@
+// .register {
+//     .register_section {
+//         .secound_section {
+//             height: 100vh;
+//             background-color: $page_bg;
+
+//             .inner {
+
+//                 .flex_input {
+//                     .form-floating {
+//                         label {
+//                             padding-left: 37px;
+//                         }
+
+//                         img {
+//                             top: 14px;
+//                             left: 13px;
+//                         }
+
+//                         .form-control {
+//                             padding-right: 10px;
+//                             padding-left: 33px;
+//                         }
+//                     }
+//                 }
+
+//                 .register_link {
+//                     .register_button {
+//                         font-size: 17px;
+
+//                         span {
+//                             margin-left: 10px;
+//                             font-weight: 600;
+//                         }
+//                     }
+//                 }
+
+//                 .checkbox {
+//                     margin-top: 20px;
+
+//                     @media($breakpoint_ESM) {
+//                         margin-top: 13px;
+//                     }
+
+//                     label {
+//                         @include display(center, flex-start);
+//                         gap: 10px;
+
+//                         p {
+//                             color: $paragraph ;
+//                             margin-bottom: 0;
+//                             font-size: 12px;
+//                             position: relative;
+//                             top: -3px;
+
+//                             span {
+//                                 font-weight: bold;
+//                                 color: $primary;
+//                             }
+//                         }
+//                     }
+//                 }
+
+//                 .select_position {
+//                     color: $primary;
+//                     font-weight: 600;
+//                     font-size: 15px;
+//                     margin-top: 20px;
+//                 }
+
+//                 .position_left_right {
+//                     @include display(flex-start, center);
+//                     gap: 10px;
+
+//                     .left {
+//                         @include display(center, center);
+//                         font-size: 14px;
+//                         font-weight: 600;
+//                         color: $forgot;
+
+//                         input {
+//                             margin-right: 4px;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }

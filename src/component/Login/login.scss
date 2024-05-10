@@ -1,0 +1,201 @@
+// .login {
+//     @include display(center, center);
+
+//     .login_section {
+//         width: 420px;
+//         background-color: $page_bg;
+//         height: 100vh;
+
+//         .logo {
+//             @include display(center, center);
+//             background-color: $primary;
+//             padding: 15px 10px;
+//             position: fixed;
+//             top: 0;
+//             z-index: 1;
+//             width: 100%;
+//             max-width: 420px;
+
+//             .back_back {
+//                 position: absolute;
+//                 left: 7px;
+//                 cursor: pointer;
+//             }
+
+//             .dg_image {
+//                 display: flex;
+
+//                 h2 {
+//                     color: $white;
+//                     font-size: 17px;
+//                     font-style: normal;
+//                     font-weight: 800;
+//                     text-transform: uppercase;
+//                     margin-bottom: 0;
+//                 }
+//             }
+//         }
+
+//         .lottery {
+//             background-color: $primary;
+//             padding: 55px 15px 15px;
+
+//             h5 {
+//                 font-size: 15px;
+//                 font-weight: 600;
+//                 color: $white;
+//                 margin-bottom: 5px;
+//             }
+
+//             p {
+//                 font-size: 13px;
+//                 color: $white;
+//                 margin-bottom: 0;
+
+//                 @media($breakpoint_350) {
+//                     font-size: 12px;
+//                 }
+//             }
+//         }
+
+//         .secound_section {
+//             height: 100vh;
+//             background-color: $page_bg;
+
+//             .inner {
+//                 background-color: $page_bg;
+//                 padding: 30px 15px 20px;
+
+//                 @media($breakpoint_350) {
+//                     padding: 30px 15px 15px;
+//                 }
+
+//                 .form-floating>.form-control,
+//                 .form-floating>.form-select {
+//                     height: calc(2.9rem + 1px);
+//                 }
+
+//                 .form-floating {
+//                     position: relative;
+
+//                     label {
+//                         font-size: 12px;
+//                         padding-top: 15px;
+//                         padding-left: 46px;
+//                         margin-bottom: 5px;
+//                         color: $forgot;
+
+//                         @media($breakpoint_350) {
+//                             padding-left: 45px;
+//                             font-size: 11px;
+//                         }
+//                     }
+
+//                     img {
+//                         position: absolute;
+//                         top: 16px;
+//                         left: 11px;
+
+//                         @media($breakpoint_350) {
+//                             left: 11px;
+//                         }
+//                     }
+
+//                     .password {
+//                         position: absolute;
+//                         top: 12px;
+//                         left: 7px;
+//                     }
+
+//                     input {
+//                         border: none;
+//                         border-radius: 7px;
+//                         font-size: 14px;
+//                         padding: 13px 40px 0px 43px;
+//                         font-weight: 500;
+//                         box-shadow: $input_shadow;
+//                         letter-spacing: .5px;
+
+//                         @media($breakpoint_350) {
+//                             padding-left: 43px;
+//                         }
+
+//                         &:focus {
+//                             padding-left: 43px;
+//                         }
+
+//                         &:focus-visible {
+//                             outline: none;
+//                         }
+//                     }
+
+//                     .passwod_btn {
+//                         position: absolute;
+//                         right: 15px;
+//                         top: 11px;
+//                         border: none;
+//                         background-color: transparent;
+
+//                         &:focus-visible {
+//                             outline: none;
+//                         }
+
+//                         svg {
+//                             width: 22px;
+//                             outline: none;
+//                             box-shadow: none;
+//                         }
+//                     }
+//                 }
+
+//                 .forgot_link {
+//                     text-align: end;
+//                     margin: 15px 0;
+
+//                     .forgot {
+//                         color: $forgot;
+//                         text-decoration: underline;
+//                         font-size: 14px;
+//                     }
+//                 }
+
+//                 .login_link {
+//                     .login_button {
+//                         @include login_button;
+//                     }
+//                 }
+
+//                 .register_link {
+//                     .register_button {
+//                         @include register_button;
+//                     }
+//                 }
+
+//                 .upper {
+//                     text-align: center;
+//                     margin-top: 15px;
+
+//                     img {
+//                         margin-bottom: 5px;
+//                     }
+
+//                     h5 {
+//                         color: $primary;
+//                         font-weight: 700;
+//                         margin-bottom: 11px;
+//                         font-size: 15px;
+
+//                         @media($breakpoint_450) {
+//                             margin-bottom: 15px;
+//                             font-size: 14px;
+//                         }
+
+//                         @media($breakpoint_350) {
+//                             font-size: 14px;
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }

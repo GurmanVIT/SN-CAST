@@ -1,0 +1,124 @@
+// .forgot_sec {
+//     @include display(center, center);
+
+//     .screen_forgot {
+//         width: 100%;
+//         max-width: 420px;
+//         height: 100vh;
+//         background-color: $page_bg;
+
+//         .logo {
+//             @include display(center, center);
+//             background-color: $primary;
+//             padding: 15px 10px;
+//             position: fixed;
+//             top: 0;
+//             z-index: 1;
+//             width: 100%;
+//             max-width: 420px;
+
+//             .back_back {
+//                 position: absolute;
+//                 left: 7px;
+//                 cursor: pointer;
+//             }
+
+//             .dg_image {
+//                 display: flex;
+
+//                 h2 {
+//                     color: $white;
+//                     font-size: 17px;
+//                     font-style: normal;
+//                     font-weight: 800;
+//                     text-transform: uppercase;
+//                     margin-bottom: 0;
+//                 }
+//             }
+//         }
+
+//         .lottery {
+//             background-color: $primary;
+//             padding: 55px 15px 15px;
+
+//             h5 {
+//                 font-size: 15px;
+//                 font-weight: 600;
+//                 color: $white;
+//                 margin-bottom: 5px;
+//             }
+//         }
+
+//         .inner {
+//             background-color: $page_bg;
+//             padding: 50px 25px 25px;
+//             height: 100vh;
+
+//             @media($breakpoint_450) {
+//                 padding: 40px 20px 20px;
+//             }
+
+//             @media($breakpoint_350) {
+//                 padding: 35px 15px 15px;
+//             }
+
+//             .form-floating>.form-control,
+//             .form-floating>.form-select {
+//                 height: calc(2.9rem + 1px);
+//             }
+
+//             .form-floating {
+//                 position: relative;
+
+//                 label {
+//                     font-size: 12px;
+//                     padding-top: 15px;
+//                     padding-left: 46px;
+//                     margin-bottom: 5px;
+//                     color: $forgot;
+
+//                     @media($breakpoint_350) {
+//                         padding-left: 45px;
+//                         font-size: 11px;
+//                     }
+//                 }
+
+//                 img {
+//                     position: absolute;
+//                     top: 16px;
+//                     left: 11px;
+
+//                     @media($breakpoint_350) {
+//                         left: 11px;
+//                     }
+//                 }
+
+//                 input {
+//                     border: none;
+//                     border-radius: 7px;
+//                     font-size: 14px;
+//                     padding: 13px 40px 0px 43px;
+//                     font-weight: 500;
+//                     box-shadow: $input_shadow;
+//                     letter-spacing: .5px;
+
+//                     @media($breakpoint_350) {
+//                         padding-left: 43px;
+//                     }
+
+//                     &:focus {
+//                         padding-left: 43px;
+//                     }
+
+//                     &:focus-visible {
+//                         outline: none;
+//                     }
+//                 }
+//             }
+
+//             button {
+//                 @include login_button;
+//             }
+//         }
+//     }
+// }
