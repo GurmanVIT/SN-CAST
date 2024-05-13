@@ -1,10 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import back_icon from "../../assets/img/back-icon.svg";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Deposit = () => {
 
     const navigation = useNavigate();
+
+    // cosnt[depositData, setDepositData] = useState();
+
+    // const depositSuccess = useSelector((state) => state.depositReducer.data);
+
+    // useEffect(() => {
+    //     console.log("depositSuccess ===>", depositSuccess)
+    //     if (depositSuccess != null && depositSuccess.success === 1) {
+    //         setDepositData(depositSuccess.data);
+    //     }
+    // }, [depositSuccess]);
+
 
     const [visible, setVisible] = useState(false)
 

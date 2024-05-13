@@ -1,9 +1,9 @@
 // src/redux/slices/authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { ApiBaseUrl, profileApi } from "../utils/Constants";
+import { ApiBaseUrl, updateProfileApi } from "../utils/Constants";
 
-export const profileData = createAsyncThunk("profileData", async (payload) => {
+export const updateProfileData = createAsyncThunk("updateProfileData", async (payload) => {
     try {
         const config = {
             headers: {
@@ -11,41 +11,42 @@ export const profileData = createAsyncThunk("profileData", async (payload) => {
                 "Content-Type": "application/json",
             },
         };
-        const url = ApiBaseUrl + profileApi + `?user_id=${payload}`
-        const response = await axios.get(url, config);
+        const url = ApiBaseUrl + updateProfileApi
+        const response = await axios.put(url, payload, config);
+        console.log("Response ===> ", response.data)
         return response.data;
     } catch (error) {
         throw error.response.data;
     }
 });
 
-const profileSlice = createSlice({
-    name: "profileReducer",
+const updateProfileSlice = createSlice({
+    name: "updateProfileReducer",
 
     initialState: {
         isLoading: false,
         data: null,
     },
     reducers: {
-        clearProfile: (state) => {
+        clearUpdateProfile: (state) => {
             // Reset the data property to an empty array
             state.data = null;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(profileData.pending, (state) => {
+            .addCase(updateProfileData.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(profileData.fulfilled, (state, action) => {
+            .addCase(updateProfileData.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload;
             })
-            .addCase(profileData.rejected, (state) => {
+            .addCase(updateProfileData.rejected, (state) => {
                 state.isError = false;
             });
     },
 });
 
-export const { clearProfile } = profileSlice.actions;
-export default profileSlice.reducer;
+export const { clearUpdateProfile } = updateProfileSlice.actions;
+export default updateProfileSlice.reducer;

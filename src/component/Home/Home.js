@@ -6,6 +6,8 @@ import copy from "../../assets/img/copy.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { profileData } from "../../redux/profileSlice";
+import { getAllOpenOrdersData } from "../../redux/getAllOpenOrdersSlice";
+import { updateProfileData } from "../../redux/updateProfileSlice";
 
 const Home = () => {
 
@@ -13,8 +15,14 @@ const Home = () => {
     const dispatch = useDispatch();
 
     const [profiledata, setProfileData] = useState("");
+    const [openOrder, setOpenOrder] = useState("");
+    const [getAllOrders, setGetAllOrders] = useState("");
+    const [active, setInActive] = useState(1);
+
 
     const profileSuccess = useSelector((state) => state.profileReducer.data);
+    const openOrdersSuccess = useSelector((state) => state.getAllOpenOrdersReducer.data);
+    const getAllOrdersSuccess = useSelector((state) => state.getAllOrdersReducer.data);
 
     useEffect(() => {
         const id = localStorage.getItem("id")
@@ -22,11 +30,38 @@ const Home = () => {
     }, [])
 
     useEffect(() => {
-        console.log("profileSuccess ===>", profileSuccess)
+        const id = localStorage.getItem("id")
+        dispatch(getAllOpenOrdersData(id))
+    }, [])
+
+    useEffect(() => {
+        const id = localStorage.getItem("id")
+        dispatch(getAllOpenOrdersData(id))
+    }, [])
+
+
+    useEffect(() => {
         if (profileSuccess != null && profileSuccess.success === 1) {
             setProfileData(profileSuccess.data);
         }
     }, [profileSuccess]);
+
+
+    useEffect(() => {
+        console.log("openOrdersSuccess ===>", openOrdersSuccess)
+        if (openOrdersSuccess != null && openOrdersSuccess.success === 1) {
+            setOpenOrder(openOrdersSuccess.data);
+        }
+    }, [openOrdersSuccess]);
+
+
+    useEffect(() => {
+        console.log("getAllOrdersSuccess ===>", getAllOrdersSuccess)
+        if (getAllOrdersSuccess != null && getAllOrdersSuccess.success === 1) {
+            setGetAllOrders(getAllOrdersSuccess.data);
+        }
+    }, [getAllOrdersSuccess]);
+
 
     const [visible, setVisible] = useState(false)
 
@@ -53,8 +88,8 @@ const Home = () => {
         <>
             <section className="" id="">
                 <div className="container">
-                    {profiledata != null &&
-                        <div className="content-mid-index">
+                    <div className="content-mid-index">
+                        {profiledata != null &&
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="logo-top text-center">
@@ -93,57 +128,88 @@ const Home = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className="bottom-content">
-                                <div className="row">
-                                    <div className="col-6">
-                                        <div className="api-bind">
-                                            <a href="#">
-                                                <img src={api_img} className="img-fluid" alt="api_img" draggable="false" onClick={() => { scrollToTop(); navigation('/api_binding') }} />
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div className="col-6">
-                                        <div className="text-end">
-                                            <button type="button" className="btn-new" onClick={() => { scrollToTop(); navigation('/deposit') }}>Deposit</button>
-                                        </div>
+                        }
+                        <div className="bottom-content">
+                            <div className="row">
+                                <div className="col-6">
+                                    <div className="api-bind">
+                                        <a href="#">
+                                            <img src={api_img} className="img-fluid" alt="api_img" draggable="false" onClick={() => { scrollToTop(); navigation('/api_binding') }} />
+                                        </a>
                                     </div>
                                 </div>
+                                <div className="col-6">
+                                    <div className="text-end">
+                                        <button type="button" className="btn-new" onClick={() => { scrollToTop(); navigation('/deposit') }}>Deposit</button>
+                                    </div>
+                                </div>
+                            </div>
 
-                                <div className="row mt-3">
-                                    <div className="col">
-                                        <ul className="nav nav-tabs border-0" role="tablist">
-                                            <li className="nav-item" role="presentation">
-                                                <a className="nav-link tabs-link-custom " id="simple-tab-0" data-bs-toggle="tab"
-                                                    href="#simple-tabpanel-0" role="tab" aria-controls="simple-tabpanel-0" aria-selected="true">Open
-                                                    Orders
-                                                </a>
-                                            </li>
-                                            <li className="nav-item" role="presentation">
-                                                <a className="nav-link tabs-link-custom" id="simple-tab-1" data-bs-toggle="tab" href="#simple-tabpanel-1"
-                                                    role="tab" aria-controls="simple-tabpanel-1" aria-selected="false">
-                                                    Position
-                                                </a>
-                                            </li>
-                                        </ul>
+                            <div className="row mt-3">
+                                <div className="col">
+                                    <div className="nav nav-tabs border-0 " role="tablist">
+                                        <button type="button"
+                                            style={{
+                                                backgroundColor: active === 1 ? "transparent" : "#fff",
+                                                color: "#000",
+                                                border: "none",
+                                                borderBottom: active === 1 ? "2px solid #000" : "2px solid transparent",
+                                                padding: "7px 10px",
+                                            }}
+                                            onClick={() => setInActive(1)}>
+                                            Open Orders
+                                        </button>
+                                        <button type="button"
+                                            style={{
+                                                backgroundColor: active === 2 ? "transparent" : "#fff",
+                                                color: "#000",
+                                                border: "none",
+                                                borderBottom: active === 2 ? "2px solid #000" : "2px solid transparent",
+                                                padding: "7px 10px"
+                                            }}
+                                            onClick={() => setInActive(2)}>
+                                            Position
+                                        </button>
+                                    </div>
+
+                                    {active === 1 ? (
                                         <div className="tab-content pt-4" id="tab-content">
+
+                                            {/* {openOrder != null &&
+                                                openOrder.map((item) => */}
                                             <div className="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
                                                 <div className="row">
                                                     <div className="col">
                                                         <div className="card-custom">
                                                             <div className="card-header-inner">
-                                                                <h4>BNBUSDT</h4>
+                                                                <h4>
+                                                                    {/* {item.symbol} */}
+                                                                    tgnhmk
+                                                                </h4>
                                                             </div>
                                                             <div className="row">
                                                                 <div className="col-6">
                                                                     <div className="">
-                                                                        <p><span>Quantity :</span> 0.07</p>
-                                                                        <p><span>Price :</span> $5.99</p>
+                                                                        <p><span>Quantity :</span>
+                                                                            {/* {item.origQty} */}
+                                                                            cdbhnjkum
+                                                                        </p>
+                                                                        <p><span>Price :</span>
+                                                                            {/* {item.price} */}
+                                                                            hytfgvf
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                                 <div className="col-6">
                                                                     <div className="">
-                                                                        <p><span>Order Id :</span> 56546544</p>
-                                                                        <p><span>Order Type :</span> STOP_MARKET</p>
+                                                                        <p><span>Order Id :</span>
+                                                                            {/* {item.orderId} */}
+                                                                            fdsfds
+                                                                        </p>
+                                                                        <p><span>Order Type :</span>
+                                                                            {/* {item.origType} */}
+                                                                            dfdf
+                                                                        </p>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -156,15 +222,81 @@ const Home = () => {
                                                     </div>
                                                 </div>
                                             </div>
+                                            {/* )
+                                            } */}
                                             <div className="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">Tab 2
                                                 selected
                                             </div>
                                         </div>
-                                    </div>
+                                    ) : (
+                                        ""
+                                    )
+                                    }
+
+                                    {active === 2 ? (
+                                        <div className="tab-content pt-4" id="tab-content">
+
+                                            {/* {getAllOrders != null &&
+                                                getAllOrders.map((item) => */}
+                                            <div className="tab-pane active" id="simple-tabpanel-0" role="tabpanel" aria-labelledby="simple-tab-0">
+                                                <div className="row">
+                                                    <div className="col">
+                                                        <div className="card-custom">
+                                                            <div className="card-header-inner">
+                                                                <h4>
+                                                                    {/* {item.symbol} */}
+                                                                    jyhg
+                                                                </h4>
+                                                            </div>
+                                                            <div className="row">
+                                                                <div className="col-6">
+                                                                    <div className="">
+                                                                        <p><span>Quantity :</span>
+                                                                            {/* {item.origQty} */}
+                                                                            kfdiojfd
+                                                                        </p>
+                                                                        <p><span>Price :</span>
+                                                                            {/* {item.price} */}
+                                                                            fedfdwf
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div className="col-6">
+                                                                    <div className="">
+                                                                        <p><span>Order Id :</span>
+                                                                            {/* {item.orderId} */}
+                                                                            gfdgfdg
+                                                                        </p>
+                                                                        <p><span>Order Type :</span>
+                                                                            {/* {item.origType} */}
+                                                                            fdfdsaf
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="row">
+                                                                <div className="col">
+                                                                    <button type="button" className="cancel-btn">Cancel</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {/* )
+                                            } */}
+                                            <div className="tab-pane" id="simple-tabpanel-1" role="tabpanel" aria-labelledby="simple-tab-1">Tab 2
+                                                selected
+                                            </div>
+                                        </div>
+                                    ) : (
+                                        ""
+                                    )
+                                    }
                                 </div>
                             </div>
                         </div>
-                    }
+                    </div>
                 </div>
             </section>
         </>

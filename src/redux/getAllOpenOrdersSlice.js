@@ -1,9 +1,9 @@
 // src/redux/slices/authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { ApiBaseUrl, profileApi } from "../utils/Constants";
+import { ApiBaseUrl, getAllOpenOrdersApi } from "../utils/Constants";
 
-export const profileData = createAsyncThunk("profileData", async (payload) => {
+export const getAllOpenOrdersData = createAsyncThunk("getAllOpenOrdersData", async (payload) => {
     try {
         const config = {
             headers: {
@@ -11,7 +11,7 @@ export const profileData = createAsyncThunk("profileData", async (payload) => {
                 "Content-Type": "application/json",
             },
         };
-        const url = ApiBaseUrl + profileApi + `?user_id=${payload}`
+        const url = ApiBaseUrl + getAllOpenOrdersApi + `?id=${payload}&type=1`
         const response = await axios.get(url, config);
         return response.data;
     } catch (error) {
@@ -19,33 +19,33 @@ export const profileData = createAsyncThunk("profileData", async (payload) => {
     }
 });
 
-const profileSlice = createSlice({
-    name: "profileReducer",
+const getAllOpenOrdersSlice = createSlice({
+    name: "getAllOpenOrdersReducer",
 
     initialState: {
         isLoading: false,
         data: null,
     },
     reducers: {
-        clearProfile: (state) => {
+        clearGetAllOpenOrders: (state) => {
             // Reset the data property to an empty array
             state.data = null;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(profileData.pending, (state) => {
+            .addCase(getAllOpenOrdersData.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(profileData.fulfilled, (state, action) => {
+            .addCase(getAllOpenOrdersData.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload;
             })
-            .addCase(profileData.rejected, (state) => {
+            .addCase(getAllOpenOrdersData.rejected, (state) => {
                 state.isError = false;
             });
     },
 });
 
-export const { clearProfile } = profileSlice.actions;
-export default profileSlice.reducer;
+export const { clearGetAllOpenOrders } = getAllOpenOrdersSlice.actions;
+export default getAllOpenOrdersSlice.reducer;

@@ -1,9 +1,9 @@
 // src/redux/slices/authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { ApiBaseUrl, profileApi } from "../utils/Constants";
+import { ApiBaseUrl, getAllOrdersApi } from "../utils/Constants";
 
-export const profileData = createAsyncThunk("profileData", async (payload) => {
+export const getAllOrdersData = createAsyncThunk("getAllOrdersData", async (payload) => {
     try {
         const config = {
             headers: {
@@ -11,7 +11,7 @@ export const profileData = createAsyncThunk("profileData", async (payload) => {
                 "Content-Type": "application/json",
             },
         };
-        const url = ApiBaseUrl + profileApi + `?user_id=${payload}`
+        const url = ApiBaseUrl + getAllOrdersApi + `?id=${payload}&type=1`
         const response = await axios.get(url, config);
         return response.data;
     } catch (error) {
@@ -19,33 +19,33 @@ export const profileData = createAsyncThunk("profileData", async (payload) => {
     }
 });
 
-const profileSlice = createSlice({
-    name: "profileReducer",
+const getAllOrdersSlice = createSlice({
+    name: "getAllOrdersReducer",
 
     initialState: {
         isLoading: false,
         data: null,
     },
     reducers: {
-        clearProfile: (state) => {
+        clearGetAllOrders: (state) => {
             // Reset the data property to an empty array
             state.data = null;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(profileData.pending, (state) => {
+            .addCase(getAllOrdersData.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(profileData.fulfilled, (state, action) => {
+            .addCase(getAllOrdersData.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.data = action.payload;
             })
-            .addCase(profileData.rejected, (state) => {
+            .addCase(getAllOrdersData.rejected, (state) => {
                 state.isError = false;
             });
     },
 });
 
-export const { clearProfile } = profileSlice.actions;
-export default profileSlice.reducer;
+export const { clearGetAllOrders } = getAllOrdersSlice.actions;
+export default getAllOrdersSlice.reducer;
