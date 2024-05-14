@@ -16,6 +16,8 @@ export const updateProfileApi = "api/userNew/profileV1";
 export const getAllOpenOrdersApi = "api/userNew/getAllOpenOrders";
 export const getAllOrdersApi = "api/userNew/getAllOrders";
 export const depositApi = "api/userNew/deposit";
+export const cancelOrderApi = "api/userNew/cancelOrder";
+export const closeTradeApi = "/api/userNew/closeTrade";
 
 // app.post("/api/userNew/loginV1", controller.newLoginV1);
 // app.get("/api/userNew/profileV1", controller.getProfileV1);

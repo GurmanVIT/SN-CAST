@@ -4,7 +4,9 @@ import profileReducer from "./profileSlice";
 import getAllOpenOrdersReducer from "./getAllOpenOrdersSlice";
 import getAllOrdersReducer from "./getAllOrdersSlice";
 import depositReducer from "./depositSlice";
-import updateProfileReducer from "./updateProfileSlice"
+import updateProfileReducer from "./updateProfileSlice";
+import closeTradeReducer from "./closeTradeSlice";
+import cancelOrderReducer from "./cancelOrderSlice";
 
 const store = configureStore({
   reducer: {
@@ -14,6 +16,8 @@ const store = configureStore({
     getAllOrdersReducer: getAllOrdersReducer,
     depositReducer: depositReducer,
     updateProfileReducer: updateProfileReducer,
+    closeTradeReducer: closeTradeReducer,
+    cancelOrderReducer: cancelOrderReducer,
   },
 });
 

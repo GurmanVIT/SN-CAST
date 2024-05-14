@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { profileData } from "../../redux/profileSlice";
 import { getAllOpenOrdersData } from "../../redux/getAllOpenOrdersSlice";
-import { updateProfileData } from "../../redux/updateProfileSlice";
 
 const Home = () => {
   const navigation = useNavigate();
