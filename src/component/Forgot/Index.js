@@ -16,7 +16,7 @@ const Forgot = () => {
   // const [isValid, setIsValid] = useState(false);
   // const dispatch = useDispatch();
   // const forgotResponse = useSelector((state) => state.forgotReducer.data);
-  // const isLoading = useSelector((state) => state.forgotReducer.isLoading);
+  // const isLoading = useSelector((state) => state.forgotReducer.loading);
 
   // const handleEmailChange = (e) => {
   //   const newEmail = e.target.value;

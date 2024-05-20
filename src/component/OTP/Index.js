@@ -39,9 +39,9 @@ const Index = () => {
   // const otpSuccess = useSelector((state) => state.otpReducer.data);
   // const resendOtpResponse = useSelector((state) => state.resendOtpReducer.data);
   // const isLoadingResend = useSelector(
-  //   (state) => state.resendOtpReducer.isLoading
+  //   (state) => state.resendOtpReducer.loading
   // );
-  // const isLoading = useSelector((state) => state.otpReducer.isLoading);
+  // const isLoading = useSelector((state) => state.otpReducer.loading);
   // const userId = localStorage.getItem("userId");
 
   // const [isWinOpen, setWinOpen] = useState(false);

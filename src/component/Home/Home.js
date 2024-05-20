@@ -158,14 +158,13 @@ const Home = () => {
                     />
                   </div>
                   <div className="logout-btn">
-                    <a href="#">
+                    <a href="/login">
                       <img
                         src={logout_img}
                         width="25"
                         className="img-fluid"
                         alt="logout_img"
                         draggable="false"
-                        onClick={() => navigation("/login")}
                       />
                     </a>
                   </div>

@@ -3,6 +3,7 @@ import logo_login from "../../assets/img/logo-login.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginData } from "../../redux/loginSlice";
+import { ClipLoader } from "react-spinners";
 
 const Login = () => {
 
@@ -24,6 +25,7 @@ const Login = () => {
   };
 
   const loginSuccess = useSelector((state) => state.loginReducer.data);
+  const isLoading = useSelector((state) => state.loginReducer.loading);
 
   const dispatch = useDispatch();
 
@@ -90,7 +92,8 @@ const Login = () => {
                     <div className="form-style mt-4">
                       <form>
                         <div className="form-group pb-2">
-                          <input type="email" placeholder="Enter User Id" className="form-control form-control-cus"
+                          <input type="email" disabled={isLoading}
+                            placeholder="Enter User Id" className="form-control form-control-cus"
                             value={email}
                             onChange={(e) => {
                               handleEmailChange(e);
@@ -98,7 +101,8 @@ const Login = () => {
                             autocomplete="off" />
                         </div>
                         <div className="form-group pb-1 add-icon-input mt-2">
-                          <input type="password" placeholder="Password" className="form-control form-control-cus" id="exampleInputPassword1"
+                          <input type="password" disabled={isLoading}
+                            placeholder="Password" className="form-control form-control-cus" id="exampleInputPassword1"
                             value={password}
                             onChange={(e) => {
                               setPassword(e.target.value);
@@ -113,7 +117,13 @@ const Login = () => {
                           {/* <div className="forgot-pass"><a href="#" className="text-dark">Forgot Password</a></div> */}
                         </div>
                         <div className="pb-3 mt-4">
-                          <button type="button" className="btn signin-btn" onClick={() => { onLoginClick(); scrollToTop(); }}>LOGIN</button>
+                          <button type="button" className="btn signin-btn" onClick={() => { onLoginClick(); scrollToTop(); }}>
+                            {isLoading ? (
+                              <ClipLoader color={"#fff"} />
+                            ) : (
+                              "Login"
+                            )}
+                          </button>
                         </div>
                       </form>
                     </div>
