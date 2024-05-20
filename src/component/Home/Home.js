@@ -221,68 +221,68 @@ const Home = () => {
 
                   {active === 1 ? (
                     <div className="tab-content pt-4" id="tab-content">
-                      {openOrder != null &&
-                        openOrder.map((item) => (
-                          <div
-                            className="tab-pane active"
-                            id="simple-tabpanel-0"
-                            role="tabpanel"
-                            aria-labelledby="simple-tab-0"
-                          >
-                            <div className="row">
-                              <div className="col">
-                                <div className="card-custom">
-                                  <div className="card-header-inner">
-                                    <h4>
-                                      {item.symbol}
-                                      {/* tgnhmk */}
-                                    </h4>
+                      {/* {openOrder != null &&
+                        openOrder.map((item) => ( */}
+                      <div
+                        className="tab-pane active"
+                        id="simple-tabpanel-0"
+                        role="tabpanel"
+                        aria-labelledby="simple-tab-0"
+                      >
+                        <div className="row">
+                          <div className="col">
+                            <div className="card-custom">
+                              <div className="card-header-inner">
+                                <h4>
+                                  {/* {item.symbol} */}
+                                  tgnhmk
+                                </h4>
+                              </div>
+                              <div className="row">
+                                <div className="col-6">
+                                  <div className="">
+                                    <p>
+                                      <span>Quantity :</span>
+                                      {/* {item.origQty} */}
+                                      cdbhnjkum
+                                    </p>
+                                    <p>
+                                      <span>Price :</span>
+                                      {/* {item.price} */}
+                                      hytfgvf
+                                    </p>
                                   </div>
-                                  <div className="row">
-                                    <div className="col-6">
-                                      <div className="">
-                                        <p>
-                                          <span>Quantity :</span>
-                                          {item.origQty}
-                                          cdbhnjkum
-                                        </p>
-                                        <p>
-                                          <span>Price :</span>
-                                          {item.price}
-                                          {/* hytfgvf */}
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <div className="col-6">
-                                      <div className="">
-                                        <p>
-                                          <span>Order Id :</span>
-                                          {item.orderId}
-                                          {/* fdsfds */}
-                                        </p>
-                                        <p>
-                                          <span>Order Type :</span>
-                                          {item.origType}
-                                          {/* dfdf */}
-                                        </p>
-                                      </div>
-                                    </div>
+                                </div>
+                                <div className="col-6">
+                                  <div className="">
+                                    <p>
+                                      <span>Order Id :</span>
+                                      {/* {item.orderId} */}
+                                      fdsfds
+                                    </p>
+                                    <p>
+                                      <span>Order Type :</span>
+                                      {/* {item.origType} */}
+                                      dfdf
+                                    </p>
                                   </div>
-                                  <div className="row">
-                                    <div className="col">
-                                      <button
-                                        type="button"
-                                        className="cancel-btn"
-                                      >
-                                        CANCEL
-                                      </button>
-                                    </div>
-                                  </div>
+                                </div>
+                              </div>
+                              <div className="row">
+                                <div className="col">
+                                  <button
+                                    type="button"
+                                    className="cancel-btn"
+                                  >
+                                    CANCEL
+                                  </button>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        ))}
+                        </div>
+                      </div>
+                      {/* ))} */}
                       <div
                         className="tab-pane"
                         id="simple-tabpanel-1"
@@ -298,68 +298,68 @@ const Home = () => {
 
                   {active === 2 ? (
                     <div className="tab-content pt-4" id="tab-content">
-                      {getAllOrders != null &&
-                        getAllOrders.map((item) => (
-                          <div
-                            className="tab-pane active"
-                            id="simple-tabpanel-0"
-                            role="tabpanel"
-                            aria-labelledby="simple-tab-0"
-                          >
-                            <div className="row">
-                              <div className="col">
-                                <div className="card-custom">
-                                  <div className="card-header-inner">
-                                    <h4>
-                                      {item.symbol}
-                                      {/* jyhg */}
-                                    </h4>
+                      {/* {getAllOrders != null &&
+                        getAllOrders.map((item) => ( */}
+                      <div
+                        className="tab-pane active"
+                        id="simple-tabpanel-0"
+                        role="tabpanel"
+                        aria-labelledby="simple-tab-0"
+                      >
+                        <div className="row">
+                          <div className="col">
+                            <div className="card-custom">
+                              <div className="card-header-inner">
+                                <h4>
+                                  {/* {item.symbol} */}
+                                  jyhg
+                                </h4>
+                              </div>
+                              <div className="row">
+                                <div className="col-6">
+                                  <div className="">
+                                    <p>
+                                      <span>Quantity :</span>
+                                      {/* {item.origQty} */}
+                                      kfdiojfd
+                                    </p>
+                                    <p>
+                                      <span>Price :</span>
+                                      {/* {item.price} */}
+                                      fedfdwf
+                                    </p>
                                   </div>
-                                  <div className="row">
-                                    <div className="col-6">
-                                      <div className="">
-                                        <p>
-                                          <span>Quantity :</span>
-                                          {item.origQty}
-                                          {/* kfdiojfd */}
-                                        </p>
-                                        <p>
-                                          <span>Price :</span>
-                                          {item.price}
-                                          {/* fedfdwf */}
-                                        </p>
-                                      </div>
-                                    </div>
-                                    <div className="col-6">
-                                      <div className="">
-                                        <p>
-                                          <span>Order Id :</span>
-                                          {item.orderId}
-                                          {/* gfdgfdg */}
-                                        </p>
-                                        <p>
-                                          <span>Order Type :</span>
-                                          {item.origType}
-                                          {/* fdfdsaf */}
-                                        </p>
-                                      </div>
-                                    </div>
+                                </div>
+                                <div className="col-6">
+                                  <div className="">
+                                    <p>
+                                      <span>Order Id :</span>
+                                      {/* {item.orderId} */}
+                                      gfdgfdg
+                                    </p>
+                                    <p>
+                                      <span>Order Type :</span>
+                                      {/* {item.origType} */}
+                                      fdfdsaf
+                                    </p>
                                   </div>
-                                  <div className="row">
-                                    <div className="col">
-                                      <button
-                                        type="button"
-                                        className="cancel-btn"
-                                      >
-                                        CLOSE
-                                      </button>
-                                    </div>
-                                  </div>
+                                </div>
+                              </div>
+                              <div className="row">
+                                <div className="col">
+                                  <button
+                                    type="button"
+                                    className="cancel-btn"
+                                  >
+                                    CLOSE
+                                  </button>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        ))}
+                        </div>
+                      </div>
+                      {/* ))} */}
                       <div
                         className="tab-pane"
                         id="simple-tabpanel-1"
