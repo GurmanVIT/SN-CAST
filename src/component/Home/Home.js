@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { profileData } from "../../redux/profileSlice";
 import { getAllOpenOrdersData } from "../../redux/getAllOpenOrdersSlice";
+import { cancelOrderData } from "../../redux/cancelOrderSlice";
+import { closeTradeData } from "../../redux/closeTradeSlice";
+import { getAllOrdersData } from "../../redux/getAllOrdersSlice";
 
 const Home = () => {
   const navigation = useNavigate();
@@ -16,6 +19,8 @@ const Home = () => {
   const [openOrder, setOpenOrder] = useState(null);
   const [getAllOrders, setGetAllOrders] = useState(null);
   const [active, setInActive] = useState(1);
+  const [activeWallet, setActiveWallet] = useState(0);
+  const [earningWallet, setEarningWallet] = useState(0);
 
   const profileSuccess = useSelector((state) => state.profileReducer.data);
   const openOrdersSuccess = useSelector(
@@ -23,6 +28,12 @@ const Home = () => {
   );
   const getAllOrdersSuccess = useSelector(
     (state) => state.getAllOrdersReducer.data
+  );
+  const closeTradeReducer = useSelector(
+    (state) => state.closeTradeReducer.data
+  );
+  const cancelOrderReducer = useSelector(
+    (state) => state.cancelOrderReducer.data
   );
 
   useEffect(() => {
@@ -33,17 +44,29 @@ const Home = () => {
   useEffect(() => {
     const id = localStorage.getItem("id");
     dispatch(getAllOpenOrdersData(id));
-  }, []);
+  }, [active]);
 
   useEffect(() => {
     const id = localStorage.getItem("id");
-    dispatch(getAllOpenOrdersData(id));
-  }, []);
+    dispatch(getAllOrdersData(id));
+  }, [active]);
 
   useEffect(() => {
     console.log("Profile Data ===> ", profileSuccess);
     if (profileSuccess != null && profileSuccess.success === 1) {
       setProfileData(profileSuccess.data);
+      const actWallet = parseFloat(profileSuccess.data.balance);
+      const roundedNumber = actWallet.toFixed(3);
+      console.log("Balance ===> ", roundedNumber);
+      setActiveWallet(roundedNumber);
+      if (
+        profileSuccess.data.earning_wallet != null &&
+        profileSuccess.data.earning_wallet != 0
+      ) {
+        const earnWallet = parseFloat(profileSuccess.data.earning_wallet);
+        const earning_wallet = earnWallet.toFixed(3);
+        setEarningWallet(earning_wallet);
+      }
     }
   }, [profileSuccess]);
 
@@ -78,6 +101,42 @@ const Home = () => {
       behavior: "smooth",
     });
   };
+
+  const onCancelClick = (item) => {
+    const id = localStorage.getItem("id");
+    const payload = {
+      orderId: item.orderId,
+      userId: id,
+      symbol: item.symbol,
+      type: "1",
+      tradeType: item.type,
+    };
+
+    dispatch(cancelOrderData(payload));
+  };
+  const onCloseClick = (item) => {
+    const id = localStorage.getItem("id");
+    const payload = {
+      orderId: item.orderId,
+      userId: id,
+      type: "1",
+    };
+
+    dispatch(closeTradeData(payload));
+  };
+
+  useEffect(() => {
+    if (closeTradeReducer != null && closeTradeReducer.success === 1) {
+      const id = localStorage.getItem("id");
+      dispatch(getAllOrdersData(id));
+    }
+  }, [closeTradeReducer]);
+  useEffect(() => {
+    if (cancelOrderReducer != null && cancelOrderReducer.success === 1) {
+      const id = localStorage.getItem("id");
+      dispatch(getAllOpenOrdersData(id));
+    }
+  }, [cancelOrderReducer]);
 
   window.addEventListener("scroll", toggleVisible);
 
@@ -128,9 +187,9 @@ const Home = () => {
                       <div className="col-6 d-flex align-items-center justify-content-start">
                         <div className="">
                           <p>Earning Wallet</p>
-                          <h3>{profiledata.earning_wallet}</h3>
+                          <h3>{earningWallet}</h3>
                           <p>Activation Wallet</p>
-                          <h3>{profiledata.balance}</h3>
+                          <h3>{activeWallet}</h3>
                         </div>
                       </div>
                     </div>
@@ -221,68 +280,65 @@ const Home = () => {
 
                   {active === 1 ? (
                     <div className="tab-content pt-4" id="tab-content">
-                      {/* {openOrder != null &&
-                        openOrder.map((item) => ( */}
-                      <div
-                        className="tab-pane active"
-                        id="simple-tabpanel-0"
-                        role="tabpanel"
-                        aria-labelledby="simple-tab-0"
-                      >
-                        <div className="row">
-                          <div className="col">
-                            <div className="card-custom">
-                              <div className="card-header-inner">
-                                <h4>
-                                  {/* {item.symbol} */}
-                                  tgnhmk
-                                </h4>
-                              </div>
-                              <div className="row">
-                                <div className="col-6">
-                                  <div className="">
-                                    <p>
-                                      <span>Quantity :</span>
-                                      {/* {item.origQty} */}
-                                      cdbhnjkum
-                                    </p>
-                                    <p>
-                                      <span>Price :</span>
-                                      {/* {item.price} */}
-                                      hytfgvf
-                                    </p>
+                      {openOrder != null &&
+                        openOrder.map((item) => (
+                          <div
+                            className="tab-pane active"
+                            id="simple-tabpanel-0"
+                            role="tabpanel"
+                            aria-labelledby="simple-tab-0"
+                          >
+                            <div className="row">
+                              <div className="col">
+                                <div className="card-custom">
+                                  <div className="card-header-inner">
+                                    <h4>
+                                      {item.symbol}
+                                    </h4>
                                   </div>
-                                </div>
-                                <div className="col-6">
-                                  <div className="">
-                                    <p>
-                                      <span>Order Id :</span>
-                                      {/* {item.orderId} */}
-                                      fdsfds
-                                    </p>
-                                    <p>
-                                      <span>Order Type :</span>
-                                      {/* {item.origType} */}
-                                      dfdf
-                                    </p>
+                                  <div className="row">
+                                    <div className="col-6">
+                                      <div className="">
+                                        <p>
+                                          <span>Quantity :</span>
+                                          {item.origQty}
+                                          cdbhnjkum
+                                        </p>
+                                        <p>
+                                          <span>Price :</span>
+                                          {item.price}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div className="col-6">
+                                      <div className="">
+                                        <p>
+                                          <span>Order Id :</span>
+                                          {item.orderId}
+                                        </p>
+                                        <p>
+                                          <span>Order Type :</span>
+                                          {item.origType}
+                                        </p>
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                              <div className="row">
-                                <div className="col">
-                                  <button
-                                    type="button"
-                                    className="cancel-btn"
-                                  >
-                                    CANCEL
-                                  </button>
+                                  <div className="row">
+                                    <div className="col">
+                                      <button
+                                        type="button"
+                                        className="cancel-btn"
+                                        onClick={() => onCancelClick(item)}
+                                      >
+                                        CANCEL
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      {/* ))} */}
+                        ))}
                       <div
                         className="tab-pane"
                         id="simple-tabpanel-1"
@@ -298,68 +354,64 @@ const Home = () => {
 
                   {active === 2 ? (
                     <div className="tab-content pt-4" id="tab-content">
-                      {/* {getAllOrders != null &&
-                        getAllOrders.map((item) => ( */}
-                      <div
-                        className="tab-pane active"
-                        id="simple-tabpanel-0"
-                        role="tabpanel"
-                        aria-labelledby="simple-tab-0"
-                      >
-                        <div className="row">
-                          <div className="col">
-                            <div className="card-custom">
-                              <div className="card-header-inner">
-                                <h4>
-                                  {/* {item.symbol} */}
-                                  jyhg
-                                </h4>
-                              </div>
-                              <div className="row">
-                                <div className="col-6">
-                                  <div className="">
-                                    <p>
-                                      <span>Quantity :</span>
-                                      {/* {item.origQty} */}
-                                      kfdiojfd
-                                    </p>
-                                    <p>
-                                      <span>Price :</span>
-                                      {/* {item.price} */}
-                                      fedfdwf
-                                    </p>
+                      {getAllOrders != null &&
+                        getAllOrders.map((item) => (
+                          <div
+                            className="tab-pane active"
+                            id="simple-tabpanel-0"
+                            role="tabpanel"
+                            aria-labelledby="simple-tab-0"
+                          >
+                            <div className="row">
+                              <div className="col">
+                                <div className="card-custom">
+                                  <div className="card-header-inner">
+                                    <h4>
+                                      {item.symbol}
+                                    </h4>
                                   </div>
-                                </div>
-                                <div className="col-6">
-                                  <div className="">
-                                    <p>
-                                      <span>Order Id :</span>
-                                      {/* {item.orderId} */}
-                                      gfdgfdg
-                                    </p>
-                                    <p>
-                                      <span>Order Type :</span>
-                                      {/* {item.origType} */}
-                                      fdfdsaf
-                                    </p>
+                                  <div className="row">
+                                    <div className="col-6">
+                                      <div className="">
+                                        <p>
+                                          <span>Quantity :</span>
+                                          {item.origQty}
+                                        </p>
+                                        <p>
+                                          <span>Price :</span>
+                                          {item.price}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <div className="col-6">
+                                      <div className="">
+                                        <p>
+                                          <span>Order Id :</span>
+                                          {item.orderId}
+                                        </p>
+                                        <p>
+                                          <span>Order Type :</span>
+                                          {item.origType}
+                                        </p>
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                              </div>
-                              <div className="row">
-                                <div className="col">
-                                  <button
-                                    type="button"
-                                    className="cancel-btn"
-                                  >
-                                    CLOSE
-                                  </button>
+                                  <div className="row">
+                                    <div className="col">
+                                      <button
+                                        type="button"
+                                        className="cancel-btn"
+                                        onClick={() => onCloseClick(item)}
+                                      >
+                                        CLOSE
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      {/* ))} */}
+                        ))}
                       <div
                         className="tab-pane"
                         id="simple-tabpanel-1"
