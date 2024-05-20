@@ -7,6 +7,9 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { profileData } from "../../redux/profileSlice";
 import { getAllOpenOrdersData } from "../../redux/getAllOpenOrdersSlice";
+import { cancelOrderData } from "../../redux/cancelOrderSlice";
+import { closeTradeData } from "../../redux/closeTradeSlice";
+import { getAllOrdersData } from "../../redux/getAllOrdersSlice";
 
 const Home = () => {
   const navigation = useNavigate();
@@ -16,6 +19,8 @@ const Home = () => {
   const [openOrder, setOpenOrder] = useState(null);
   const [getAllOrders, setGetAllOrders] = useState(null);
   const [active, setInActive] = useState(1);
+  const [activeWallet, setActiveWallet] = useState(0);
+  const [earningWallet, setEarningWallet] = useState(0);
 
   const profileSuccess = useSelector((state) => state.profileReducer.data);
   const openOrdersSuccess = useSelector(
@@ -23,6 +28,12 @@ const Home = () => {
   );
   const getAllOrdersSuccess = useSelector(
     (state) => state.getAllOrdersReducer.data
+  );
+  const closeTradeReducer = useSelector(
+    (state) => state.closeTradeReducer.data
+  );
+  const cancelOrderReducer = useSelector(
+    (state) => state.cancelOrderReducer.data
   );
 
   useEffect(() => {
@@ -33,17 +44,29 @@ const Home = () => {
   useEffect(() => {
     const id = localStorage.getItem("id");
     dispatch(getAllOpenOrdersData(id));
-  }, []);
+  }, [active]);
 
   useEffect(() => {
     const id = localStorage.getItem("id");
-    dispatch(getAllOpenOrdersData(id));
-  }, []);
+    dispatch(getAllOrdersData(id));
+  }, [active]);
 
   useEffect(() => {
     console.log("Profile Data ===> ", profileSuccess);
     if (profileSuccess != null && profileSuccess.success === 1) {
       setProfileData(profileSuccess.data);
+      const actWallet = parseFloat(profileSuccess.data.balance);
+      const roundedNumber = actWallet.toFixed(3);
+      console.log("Balance ===> ", roundedNumber);
+      setActiveWallet(roundedNumber);
+      if (
+        profileSuccess.data.earning_wallet != null &&
+        profileSuccess.data.earning_wallet != 0
+      ) {
+        const earnWallet = parseFloat(profileSuccess.data.earning_wallet);
+        const earning_wallet = earnWallet.toFixed(3);
+        setEarningWallet(earning_wallet);
+      }
     }
   }, [profileSuccess]);
 
@@ -78,6 +101,42 @@ const Home = () => {
       behavior: "smooth",
     });
   };
+
+  const onCancelClick = (item) => {
+    const id = localStorage.getItem("id");
+    const payload = {
+      orderId: item.orderId,
+      userId: id,
+      symbol: item.symbol,
+      type: "1",
+      tradeType: item.type,
+    };
+
+    dispatch(cancelOrderData(payload));
+  };
+  const onCloseClick = (item) => {
+    const id = localStorage.getItem("id");
+    const payload = {
+      orderId: item.orderId,
+      userId: id,
+      type: "1",
+    };
+
+    dispatch(closeTradeData(payload));
+  };
+
+  useEffect(() => {
+    if (closeTradeReducer != null && closeTradeReducer.success === 1) {
+      const id = localStorage.getItem("id");
+      dispatch(getAllOrdersData(id));
+    }
+  }, [closeTradeReducer]);
+  useEffect(() => {
+    if (cancelOrderReducer != null && cancelOrderReducer.success === 1) {
+      const id = localStorage.getItem("id");
+      dispatch(getAllOpenOrdersData(id));
+    }
+  }, [cancelOrderReducer]);
 
   window.addEventListener("scroll", toggleVisible);
 
@@ -128,9 +187,9 @@ const Home = () => {
                       <div className="col-6 d-flex align-items-center justify-content-start">
                         <div className="">
                           <p>Earning Wallet</p>
-                          <h3>{profiledata.earning_wallet}</h3>
+                          <h3>{earningWallet}</h3>
                           <p>Activation Wallet</p>
-                          <h3>{profiledata.balance}</h3>
+                          <h3>{activeWallet}</h3>
                         </div>
                       </div>
                     </div>
@@ -273,6 +332,7 @@ const Home = () => {
                                       <button
                                         type="button"
                                         className="cancel-btn"
+                                        onClick={() => onCancelClick(item)}
                                       >
                                         CANCEL
                                       </button>
@@ -350,6 +410,7 @@ const Home = () => {
                                       <button
                                         type="button"
                                         className="cancel-btn"
+                                        onClick={() => onCloseClick(item)}
                                       >
                                         CLOSE
                                       </button>

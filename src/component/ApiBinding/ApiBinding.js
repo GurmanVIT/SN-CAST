@@ -170,7 +170,7 @@ const ApiBinding = () => {
                         <div className="form-group  input-ip-cuatom">
                           <img src={copy_red} alt="copy_red" />
                           <p className="form-control form-control-cus">
-                            435.864.543.12
+                            206.189.132.34
                           </p>
                         </div>
                       </div>
