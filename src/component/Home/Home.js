@@ -10,6 +10,8 @@ import { getAllOpenOrdersData } from "../../redux/getAllOpenOrdersSlice";
 import { cancelOrderData } from "../../redux/cancelOrderSlice";
 import { closeTradeData } from "../../redux/closeTradeSlice";
 import { getAllOrdersData } from "../../redux/getAllOrdersSlice";
+import { ClipLoader } from "react-spinners";
+
 
 const Home = () => {
   const navigation = useNavigate();
@@ -23,18 +25,12 @@ const Home = () => {
   const [earningWallet, setEarningWallet] = useState(0);
 
   const profileSuccess = useSelector((state) => state.profileReducer.data);
-  const openOrdersSuccess = useSelector(
-    (state) => state.getAllOpenOrdersReducer.data
-  );
-  const getAllOrdersSuccess = useSelector(
-    (state) => state.getAllOrdersReducer.data
-  );
-  const closeTradeReducer = useSelector(
-    (state) => state.closeTradeReducer.data
-  );
-  const cancelOrderReducer = useSelector(
-    (state) => state.cancelOrderReducer.data
-  );
+  const openOrdersSuccess = useSelector((state) => state.getAllOpenOrdersReducer.data);
+  const getAllOrdersSuccess = useSelector((state) => state.getAllOrdersReducer.data);
+  const closeTradeReducer = useSelector((state) => state.closeTradeReducer.data);
+  const isLoading = useSelector((state) => state.closeTradeReducer.isLoading);
+  const cancelOrderReducer = useSelector((state) => state.cancelOrderReducer.data);
+  const isLoadingCancel = useSelector((state) => state.cancelOrderReducer.isLoading);
 
   useEffect(() => {
     const id = localStorage.getItem("id");
@@ -114,6 +110,8 @@ const Home = () => {
 
     dispatch(cancelOrderData(payload));
   };
+
+
   const onCloseClick = (item) => {
     const id = localStorage.getItem("id");
     const payload = {
@@ -329,7 +327,11 @@ const Home = () => {
                                         className="cancel-btn"
                                         onClick={() => onCancelClick(item)}
                                       >
-                                        CANCEL
+                                        {isLoadingCancel ? (
+                                          <ClipLoader color={"#000"} />
+                                        ) : (
+                                          "CANCEL"
+                                        )}
                                       </button>
                                     </div>
                                   </div>
@@ -402,7 +404,11 @@ const Home = () => {
                                         className="cancel-btn"
                                         onClick={() => onCloseClick(item)}
                                       >
-                                        CLOSE
+                                        {isLoading ? (
+                                          <ClipLoader color={"#000"} />
+                                        ) : (
+                                          "CLOSE"
+                                        )}
                                       </button>
                                     </div>
                                   </div>
