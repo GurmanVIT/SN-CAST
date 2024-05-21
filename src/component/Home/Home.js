@@ -299,7 +299,6 @@ const Home = () => {
                                         <p>
                                           <span>Quantity :</span>
                                           {item.origQty}
-                                          cdbhnjkum
                                         </p>
                                         <p>
                                           <span>Price :</span>
