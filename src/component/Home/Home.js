@@ -354,11 +354,11 @@ const Home = () => {
                   )}
 
                   {active === 2 ? (
-                    <div className="tab-content pt-4" id="tab-content">
+                    <div className="tab-content pt-4 " id="tab-content">
                       {getAllOrders != null &&
                         getAllOrders.map((item) => (
                           <div
-                            className="tab-pane active"
+                            className="tab-pane active mb-3"
                             id="simple-tabpanel-0"
                             role="tabpanel"
                             aria-labelledby="simple-tab-0"
