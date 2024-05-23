@@ -281,7 +281,7 @@ const Home = () => {
                       {openOrder != null &&
                         openOrder.map((item) => (
                           <div
-                            className="tab-pane active"
+                            className="tab-pane active mb-3"
                             id="simple-tabpanel-0"
                             role="tabpanel"
                             aria-labelledby="simple-tab-0"
