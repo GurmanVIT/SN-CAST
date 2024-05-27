@@ -118,23 +118,21 @@ const ApiBinding = () => {
                         <h6>Precautions</h6>
                       </div>
                     </div>
-                    <div className="col-6">
+                    {/* <div className="col-6">
                       <div className="text-end see-inst">
                         <a href="#">See the instructions</a>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                   <div className="row">
                     <div className="col">
                       <div className="list-custom">
                         <ul>
                           <li>
-                            1. Lorem Ipsum is simply dummy text of the printing
-                            and typesetting industry.
+                            1. Please confirm that the API permission has checked Enable Spot And Margin Trading
                           </li>
                           <li>
-                            2. Lorem Ipsum is simply dummy text of the printing
-                            and typesetting industry.
+                            2. Please enter the correct API, please do not enter special characters
                           </li>
                         </ul>
                       </div>
@@ -157,9 +155,7 @@ const ApiBinding = () => {
                     <div className="col">
                       <div className="">
                         <p>
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy text ever since the 1500s
+                          For security, Binance Exchange recommends binding the server IP address when creating the API. For users who need to bind the IP address, click Edit permissions in the upper right corner after the API is created, and click in the IP address permission column to restrict access to only trusted IPs. (Recommended) option, click the copy button to copy the IP group to the input box and click OK, after adding, click save in the upper right corner.
                         </p>
                       </div>
                     </div>
@@ -168,7 +164,11 @@ const ApiBinding = () => {
                     <div className="col">
                       <div className="">
                         <div className="form-group  input-ip-cuatom">
-                          <img src={copy_red} alt="copy_red" />
+                          <img src={copy_red} alt="copy_red" onClick={() => {
+                            navigator.clipboard.writeText("206.189.132.34"
+                            );
+                            alert("Address Copy");
+                          }} style={{ cursor: "pointer" }} />
                           <p className="form-control form-control-cus">
                             206.189.132.34
                           </p>

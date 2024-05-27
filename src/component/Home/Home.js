@@ -23,6 +23,7 @@ const Home = () => {
   const [active, setInActive] = useState(1);
   const [activeWallet, setActiveWallet] = useState(0);
   const [earningWallet, setEarningWallet] = useState(0);
+  const [refferalLink, setRefferalLink] = useState('')
 
   const profileSuccess = useSelector((state) => state.profileReducer.data);
   const openOrdersSuccess = useSelector((state) => state.getAllOpenOrdersReducer.data);
@@ -52,6 +53,7 @@ const Home = () => {
     if (profileSuccess != null && profileSuccess.success === 1) {
       setProfileData(profileSuccess.data);
       const actWallet = parseFloat(profileSuccess.data.balance);
+      setRefferalLink(profileSuccess.data.refferalLink)
       const roundedNumber = actWallet.toFixed(3);
       console.log("Balance ===> ", roundedNumber);
       setActiveWallet(roundedNumber);
@@ -195,7 +197,11 @@ const Home = () => {
                       <div className="col text-end d-flex align-items-center justify-content-end">
                         <div className="copy-link">
                           <p className="m-0">
-                            Copy refferal link <img src={copy} alt="copy" />
+                            Copy refferal link <img src={copy} alt="copy" onClick={() => {
+                              navigator.clipboard.writeText(refferalLink
+                              );
+                              alert("Address Copy");
+                            }} style={{ cursor: "pointer" }} />
                           </p>
                         </div>
                       </div>
