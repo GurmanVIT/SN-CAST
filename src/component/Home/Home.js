@@ -11,6 +11,7 @@ import { cancelOrderData } from "../../redux/cancelOrderSlice";
 import { closeTradeData } from "../../redux/closeTradeSlice";
 import { getAllOrdersData } from "../../redux/getAllOrdersSlice";
 import { ClipLoader } from "react-spinners";
+import { Dropdown } from "bootstrap";
 
 
 const Home = () => {
@@ -222,7 +223,7 @@ const Home = () => {
                         draggable="false"
                         onClick={() => {
                           scrollToTop();
-                          navigation("/api_binding");
+                          navigation("/exchange_bind");
                         }}
                       />
                     </a>
@@ -246,41 +247,47 @@ const Home = () => {
 
               <div className="row mt-3">
                 <div className="col">
-                  <div className="nav nav-tabs border-0 " role="tablist">
-                    <button
-                      type="button"
-                      style={{
-                        backgroundColor: active === 1 ? "transparent" : "#fff",
-                        color: "#000",
-                        border: "none",
-                        borderBottom:
-                          active === 1
-                            ? "2px solid #000"
-                            : "2px solid transparent",
-                        padding: "7px 10px",
-                      }}
-                      onClick={() => setInActive(1)}
-                    >
-                      Open Orders
-                    </button>
-                    <button
-                      type="button"
-                      style={{
-                        backgroundColor: active === 2 ? "transparent" : "#fff",
-                        color: "#000",
-                        border: "none",
-                        borderBottom:
-                          active === 2
-                            ? "2px solid #000"
-                            : "2px solid transparent",
-                        padding: "7px 10px",
-                      }}
-                      onClick={() => setInActive(2)}
-                    >
-                      Position
-                    </button>
-                  </div>
+                  <div className="tab_dropdown_flex">
+                    <div className="nav nav-tabs border-0 " role="tablist">
+                      <button
+                        type="button"
+                        style={{
+                          backgroundColor: active === 1 ? "transparent" : "#fff",
+                          color: "#000",
+                          border: "none",
+                          borderBottom:
+                            active === 1
+                              ? "2px solid #000"
+                              : "2px solid transparent",
+                          padding: "7px 10px",
+                        }}
+                        onClick={() => setInActive(1)}
+                      >
+                        Open Orders
+                      </button>
+                      <button
+                        type="button"
+                        style={{
+                          backgroundColor: active === 2 ? "transparent" : "#fff",
+                          color: "#000",
+                          border: "none",
+                          borderBottom:
+                            active === 2
+                              ? "2px solid #000"
+                              : "2px solid transparent",
+                          padding: "7px 10px",
+                        }}
+                        onClick={() => setInActive(2)}
+                      >
+                        Position
+                      </button>
+                    </div>
 
+                    <select class="form-select" aria-label="Default select example" >
+                      <option value="1">Binance</option>
+                      <option value="2">ByBit</option>
+                    </select>
+                  </div>
 
                   {active === 1 ? (
                     <div className="tab-content pt-4" id="tab-content">

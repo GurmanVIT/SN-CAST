@@ -420,6 +420,79 @@ button.cancel-btn {
     color: #a5a5a5;
 }
 
+.tab_dropdown_flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .form-select {
+        width: auto;
+
+        &:focus {
+            box-shadow: none;
+            border-color: gray;
+        }
+
+        &:focus-visible {
+            outline: none;
+        }
+    }
+}
+
+.binacne_img {
+    @include display(center, center);
+    margin-top: 40px;
+
+    @media($breakpoint_SM) {
+        margin: 25px 20px 0;
+    }
+
+    @media($breakpoint_ESM) {
+        margin: 20px 10px 0;
+    }
+
+    img {
+        width: 50%;
+        border-radius: 35px;
+
+        @media($breakpoint_MD) {
+            width: 75%;
+        }
+
+        @media($breakpoint_SM) {
+            width: 100%;
+            border-radius: 30px;
+        }
+    }
+}
+
+.bybit_img {
+    @include display(center, center);
+    margin: 30px 0 40px;
+
+    @media($breakpoint_SM) {
+        margin: 20px 20px 30px;
+    }
+
+    @media($breakpoint_ESM) {
+        margin: 15px 10px 25px;
+    }
+
+    img {
+        width: 50%;
+        border-radius: 35px;
+
+        @media($breakpoint_MD) {
+            width: 75%;
+        }
+
+        @media($breakpoint_SM) {
+            width: 100%;
+            border-radius: 30px;
+        }
+    }
+}
+
 
 /* tabs-css */
 

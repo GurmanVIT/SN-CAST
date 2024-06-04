@@ -33,16 +33,16 @@ const Login = () => {
     } else if (password.length == 0) {
       alert("Please enter password");
     } else {
-      // const payload = {
-      //   user_id: email,
-      //   password: password,
-      // };
-
       const payload = {
-        device_id: "abc",
-        email: email,
+        user_id: email,
         password: password,
       };
+
+      // const payload = {
+      //   device_id: "abc",
+      //   email: email,
+      //   password: password,
+      // };
       dispatch(loginData(payload));
     }
   };

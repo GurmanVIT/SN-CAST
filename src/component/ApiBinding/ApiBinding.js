@@ -10,6 +10,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 const ApiBinding = () => {
+
   const navigation = useNavigate();
   const dispatch = useDispatch();
 
@@ -105,7 +106,7 @@ const ApiBinding = () => {
               <img src={back_icon} alt="back_icon" />
             </div>
             <div className="header-title">
-              <h5 className="m-0">API Binnding</h5>
+              <h5 className="m-0">API Binding</h5>
             </div>
           </header>
           <div className="bottom-content">
@@ -118,11 +119,6 @@ const ApiBinding = () => {
                         <h6>Precautions</h6>
                       </div>
                     </div>
-                    {/* <div className="col-6">
-                      <div className="text-end see-inst">
-                        <a href="#">See the instructions</a>
-                      </div>
-                    </div> */}
                   </div>
                   <div className="row">
                     <div className="col">
