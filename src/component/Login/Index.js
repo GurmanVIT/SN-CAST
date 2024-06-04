@@ -6,13 +6,11 @@ import { loginData } from "../../redux/loginSlice";
 import { ClipLoader } from "react-spinners";
 
 const Login = () => {
-
   const navigation = useNavigate();
 
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [isValid, setIsValid] = useState(false);
-
 
   const handleEmailChange = (e) => {
     const newEmail = e.target.value;
@@ -35,8 +33,14 @@ const Login = () => {
     } else if (password.length == 0) {
       alert("Please enter password");
     } else {
+      // const payload = {
+      //   user_id: email,
+      //   password: password,
+      // };
+
       const payload = {
-        user_id: email,
+        device_id: "abc",
+        email: email,
         password: password,
       };
       dispatch(loginData(payload));
@@ -44,36 +48,34 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log("loginSuccess ===>", loginSuccess)
+    console.log("loginSuccess ===>", loginSuccess);
     if (loginSuccess != null && loginSuccess.success == 1) {
-      localStorage.setItem("id", loginSuccess.data.id)
+      localStorage.setItem("id", loginSuccess.data.id);
       navigation("/home");
     } else if (loginSuccess != null) {
       alert(loginSuccess.message);
     }
   }, [loginSuccess]);
 
-
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
     if (scrolled > 300) {
-      setVisible(true)
-    }
-    else if (scrolled <= 300) {
-      setVisible(false)
+      setVisible(true);
+    } else if (scrolled <= 300) {
+      setVisible(false);
     }
   };
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
-  window.addEventListener('scroll', toggleVisible);
+  window.addEventListener("scroll", toggleVisible);
 
   return (
     <>
@@ -92,23 +94,32 @@ const Login = () => {
                     <div className="form-style mt-4">
                       <form>
                         <div className="form-group pb-2">
-                          <input type="email" disabled={isLoading}
-                            placeholder="Enter User Id" className="form-control form-control-cus"
+                          <input
+                            type="email"
+                            disabled={isLoading}
+                            placeholder="Enter User Id"
+                            className="form-control form-control-cus"
                             value={email}
                             onChange={(e) => {
                               handleEmailChange(e);
                             }}
-                            autocomplete="off" />
+                            autocomplete="off"
+                          />
                         </div>
                         <div className="form-group pb-1 add-icon-input mt-2">
-                          <input type="password" disabled={isLoading}
-                            placeholder="Password" className="form-control form-control-cus" id="exampleInputPassword1"
+                          <input
+                            type="password"
+                            disabled={isLoading}
+                            placeholder="Password"
+                            className="form-control form-control-cus"
+                            id="exampleInputPassword1"
                             value={password}
                             onChange={(e) => {
                               setPassword(e.target.value);
                             }}
                             autocomplete="off"
-                            required />
+                            required
+                          />
                         </div>
                         <div className="d-flex align-items-center justify-content-between mt-2">
                           <div className="d-flex align-items-center">
@@ -117,7 +128,14 @@ const Login = () => {
                           {/* <div className="forgot-pass"><a href="#" className="text-dark">Forgot Password</a></div> */}
                         </div>
                         <div className="pb-3 mt-4">
-                          <button type="button" className="btn signin-btn" onClick={() => { onLoginClick(); scrollToTop(); }}>
+                          <button
+                            type="button"
+                            className="btn signin-btn"
+                            onClick={() => {
+                              onLoginClick();
+                              scrollToTop();
+                            }}
+                          >
                             {isLoading ? (
                               <ClipLoader color={"#fff"} />
                             ) : (
