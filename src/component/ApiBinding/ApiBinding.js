@@ -10,13 +10,14 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 const ApiBinding = () => {
-
   const navigation = useNavigate();
   const dispatch = useDispatch();
 
   const [profiledata, setProfileData] = useState("");
   const [apiKey, setApiKey] = useState("");
   const [secretKey, setSecretKey] = useState("");
+  const [bybitApiKey, setByBitApiKey] = useState("");
+  const [bybitSecretKey, setByBitSecretKey] = useState("");
   const [disabled, setDisabled] = useState(false);
 
   const profileSuccess = useSelector((state) => state.profileReducer.data);
@@ -35,6 +36,8 @@ const ApiBinding = () => {
       setProfileData(profileSuccess.data);
       setApiKey(profileSuccess.data.api_key);
       setSecretKey(profileSuccess.data.secret_key);
+      setByBitApiKey(profileSuccess.data.bybit_api_key);
+      setByBitSecretKey(profileSuccess.data.bybit_secret_key);
     }
   }, [profileSuccess]);
 
@@ -54,6 +57,8 @@ const ApiBinding = () => {
         is_enable: 1,
         api_key: apiKey,
         secret_key: secretKey,
+        bybit_api_key: bybitApiKey,
+        bybit_secret_key: bybitSecretKey,
       };
       console.log("Pay;load ===> ", payload);
       dispatch(updateProfileData(payload));
@@ -125,10 +130,12 @@ const ApiBinding = () => {
                       <div className="list-custom">
                         <ul>
                           <li>
-                            1. Please confirm that the API permission has checked Enable Spot And Margin Trading
+                            1. Please confirm that the API permission has
+                            checked Enable Spot And Margin Trading
                           </li>
                           <li>
-                            2. Please enter the correct API, please do not enter special characters
+                            2. Please enter the correct API, please do not enter
+                            special characters
                           </li>
                         </ul>
                       </div>
@@ -151,7 +158,15 @@ const ApiBinding = () => {
                     <div className="col">
                       <div className="">
                         <p>
-                          For security, Binance Exchange recommends binding the server IP address when creating the API. For users who need to bind the IP address, click Edit permissions in the upper right corner after the API is created, and click in the IP address permission column to restrict access to only trusted IPs. (Recommended) option, click the copy button to copy the IP group to the input box and click OK, after adding, click save in the upper right corner.
+                          For security, Binance Exchange recommends binding the
+                          server IP address when creating the API. For users who
+                          need to bind the IP address, click Edit permissions in
+                          the upper right corner after the API is created, and
+                          click in the IP address permission column to restrict
+                          access to only trusted IPs. (Recommended) option,
+                          click the copy button to copy the IP group to the
+                          input box and click OK, after adding, click save in
+                          the upper right corner.
                         </p>
                       </div>
                     </div>
@@ -160,11 +175,15 @@ const ApiBinding = () => {
                     <div className="col">
                       <div className="">
                         <div className="form-group  input-ip-cuatom">
-                          <img src={copy_red} alt="copy_red" onClick={() => {
-                            navigator.clipboard.writeText("206.189.132.34"
-                            );
-                            alert("Address Copy");
-                          }} style={{ cursor: "pointer" }} />
+                          <img
+                            src={copy_red}
+                            alt="copy_red"
+                            onClick={() => {
+                              navigator.clipboard.writeText("206.189.132.34");
+                              alert("Address Copy");
+                            }}
+                            style={{ cursor: "pointer" }}
+                          />
                           <p className="form-control form-control-cus">
                             206.189.132.34
                           </p>
