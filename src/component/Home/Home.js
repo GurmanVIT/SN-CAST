@@ -5,11 +5,11 @@ import api_img from "../../assets/img/api.svg";
 import copy from "../../assets/img/copy.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { profileData } from "../../redux/profileSlice";
-import { getAllOpenOrdersData } from "../../redux/getAllOpenOrdersSlice";
-import { cancelOrderData } from "../../redux/cancelOrderSlice";
-import { closeTradeData } from "../../redux/closeTradeSlice";
-import { getAllOrdersData } from "../../redux/getAllOrdersSlice";
+import { clearProfile, profileData } from "../../redux/profileSlice";
+import { clearGetAllOpenOrders, getAllOpenOrdersData } from "../../redux/getAllOpenOrdersSlice";
+import { cancelOrderData, clearCancelOrder } from "../../redux/cancelOrderSlice";
+import { clearCloseTrader, closeTradeData } from "../../redux/closeTradeSlice";
+import { clearGetAllOrders, getAllOrdersData } from "../../redux/getAllOrdersSlice";
 import { ClipLoader } from "react-spinners";
 import { Dropdown } from "bootstrap";
 import { getAllOpenOrdersByBitApi } from "../../utils/Constants";
@@ -17,6 +17,9 @@ import { getAllOpenOrdersByBitData } from "../../redux/getAllOpenOrdersBybitSlic
 import { cancelOrderByBitData } from "../../redux/cancelOrderBybitSlice";
 import { closeTradeByBitData } from "../../redux/closeTradeBybitSlice";
 import { getAllOrdersByBitData } from "../../redux/getAllOrdersBybitSlice";
+import { clearUpdateProfile } from "../../redux/updateProfileSlice";
+import { clearDeposit } from "../../redux/depositSlice";
+import { clearLogin } from "../../redux/loginSlice";
 
 const Home = () => {
   const navigation = useNavigate();
@@ -78,20 +81,17 @@ const Home = () => {
 
   useEffect(() => {
     const id = localStorage.getItem("id");
-    console.log("Value ===> ", exchangeValue);
     exchangeValue == 1
       ? dispatch(getAllOrdersData(id))
       : dispatch(getAllOrdersByBitData(id));
   }, [active, exchangeValue]);
 
   useEffect(() => {
-    console.log("Profile Data ===> ", profileSuccess);
     if (profileSuccess != null && profileSuccess.success === 1) {
       setProfileData(profileSuccess.data);
       const actWallet = parseFloat(profileSuccess.data.balance);
       setRefferalLink(profileSuccess.data.refferalLink);
       const roundedNumber = actWallet.toFixed(3);
-      console.log("Balance ===> ", roundedNumber);
       setActiveWallet(roundedNumber);
       if (
         profileSuccess.data.earning_wallet != null &&
@@ -105,20 +105,17 @@ const Home = () => {
   }, [profileSuccess]);
 
   useEffect(() => {
-    console.log("openOrdersSuccess ===>", openOrdersSuccess);
     if (openOrdersSuccess != null && openOrdersSuccess.success === 1) {
       setOpenOrder(openOrdersSuccess.data);
     }
   }, [openOrdersSuccess]);
 
   useEffect(() => {
-    console.log("getAllOrdersSuccess ===>", getAllOrdersSuccess);
     if (getAllOrdersSuccess != null && getAllOrdersSuccess.success === 1) {
       setGetAllOrders(getAllOrdersSuccess.data);
     }
   }, [getAllOrdersSuccess]);
   useEffect(() => {
-    console.log("openOrdersBybitSuccess ===>", openOrdersByBitSuccess);
     if (
       openOrdersByBitSuccess != null &&
       openOrdersByBitSuccess.success === 1
@@ -132,10 +129,6 @@ const Home = () => {
       getAllOrdersByBitSuccess != null &&
       getAllOrdersByBitSuccess.success === 1
     ) {
-      console.log(
-        "getAllOrdersByBitSuccess ===>",
-        getAllOrdersByBitSuccess.data
-      );
       setGetAllOrders(getAllOrdersByBitSuccess.data);
     }
   }, [getAllOrdersByBitSuccess]);
@@ -170,8 +163,8 @@ const Home = () => {
           ? item.triggerDirection == 0
             ? item.orderType
             : item.triggerDirection == 1
-            ? "STOP-MARKET"
-            : "TAKE-PROFIT"
+              ? "STOP-MARKET"
+              : "TAKE-PROFIT"
           : item.type,
     };
     exchangeValue == 1
@@ -225,6 +218,24 @@ const Home = () => {
 
   window.addEventListener("scroll", toggleVisible);
 
+
+
+  const logout = () => {
+    dispatch(clearProfile());
+    dispatch(clearUpdateProfile());
+    dispatch(clearCancelOrder());
+    dispatch(clearCloseTrader());
+    dispatch(clearDeposit());
+    dispatch(clearGetAllOpenOrders());
+    dispatch(clearGetAllOrders());
+    dispatch(clearLogin());
+
+    setTimeout(() => {
+      navigation(-1);
+    }, 500);
+  };
+
+
   return (
     <>
       <section className="" id="">
@@ -243,7 +254,7 @@ const Home = () => {
                     />
                   </div>
                   <div className="logout-btn">
-                    <a href="/login">
+                    <div onClick={() => logout()}>
                       <img
                         src={logout_img}
                         width="25"
@@ -251,7 +262,7 @@ const Home = () => {
                         alt="logout_img"
                         draggable="false"
                       />
-                    </a>
+                    </div>
                   </div>
                   <div className="user-details">
                     <div className="row">
@@ -372,14 +383,14 @@ const Home = () => {
                       </button>
                     </div>
 
-                    <select
+                    {/* <select
                       class="form-select"
                       aria-label="Default select example"
                       onChange={(value) => setExchangeValue(value.target.value)}
                     >
                       <option value="1">Binance</option>
                       <option value="2">ByBit</option>
-                    </select>
+                    </select> */}
                   </div>
 
                   {active === 1 ? (
@@ -424,8 +435,8 @@ const Home = () => {
                                           {item.triggerDirection == 0
                                             ? item.orderType
                                             : item.triggerDirection == 1
-                                            ? "STOP-MARKET"
-                                            : "TAKE-PROFIT"}
+                                              ? "STOP-MARKET"
+                                              : "TAKE-PROFIT"}
                                         </p>
                                       </div>
                                     </div>

@@ -15,7 +15,6 @@ export const cancelOrderData = createAsyncThunk(
       };
       const url = ApiBaseUrl + cancelOrderApi;
       const response = await axios.put(url, payload, config);
-      console.log("Response ===> ", response.data);
       return response.data;
     } catch (error) {
       throw error.response.data;

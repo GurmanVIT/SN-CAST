@@ -15,7 +15,6 @@ export const getAllOrdersData = createAsyncThunk(
       };
       const url = ApiBaseUrl + getAllOrdersApi + `?id=${payload}&type=1`;
       const response = await axios.get(url, config);
-      console.log("Response orders ===> ", response.data);
       return response.data;
     } catch (error) {
       throw error.response.data;

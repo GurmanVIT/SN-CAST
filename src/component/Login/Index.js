@@ -48,7 +48,6 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log("loginSuccess ===>", loginSuccess);
     if (loginSuccess != null && loginSuccess.success == 1) {
       localStorage.setItem("id", loginSuccess.data.id);
       navigation("/home");

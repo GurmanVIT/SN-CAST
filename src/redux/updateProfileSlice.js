@@ -13,7 +13,6 @@ export const updateProfileData = createAsyncThunk("updateProfileData", async (pa
         };
         const url = ApiBaseUrl + updateProfileApi
         const response = await axios.put(url, payload, config);
-        console.log("Response ===> ", response.data)
         return response.data;
     } catch (error) {
         throw error.response.data;

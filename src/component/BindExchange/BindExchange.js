@@ -53,9 +53,9 @@ const BindExchange = () => {
                         <div className="binacne_img">
                             <img src={binance} alt="binance" onClick={() => navigation('/api_binding')} />
                         </div>
-                        <div className="bybit_img">
+                        {/* <div className="bybit_img">
                             <img src={bybit} alt="bybit" onClick={() => navigation('/bybit_api_binding')} />
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>

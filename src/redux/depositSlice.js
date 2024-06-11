@@ -11,9 +11,7 @@ export const depositData = createAsyncThunk("depositData", async (payload) => {
       },
     };
     const url = `https://web.sparcknet.com/Dashboard/Fund/user_deposit_transations/SN653735`;
-    console.log("url Deposit ==->", url);
     const response = await axios.get(url, config);
-    console.log("Response Deposit ==->", response.data);
     return response.data;
   } catch (error) {
     throw error.response.data;

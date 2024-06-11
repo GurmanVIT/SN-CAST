@@ -15,7 +15,6 @@ export const closeTradeData = createAsyncThunk(
       };
       const url = ApiBaseUrl + closeTradeApi;
       const response = await axios.put(url, payload, config);
-      console.log("Response Close===> ", response.data);
       return response.data;
     } catch (error) {
       throw error.response.data;

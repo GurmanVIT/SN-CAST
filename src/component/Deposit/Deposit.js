@@ -14,7 +14,6 @@ const Deposit = () => {
   // const depositSuccess = useSelector((state) => state.depositReducer.data);
 
   // useEffect(() => {
-  //     console.log("depositSuccess ===>", depositSuccess)
   //     if (depositSuccess != null && depositSuccess.success === 1) {
   //         setDepositData(depositSuccess.data);
   //     }
@@ -27,7 +26,6 @@ const Deposit = () => {
   }, []);
 
   useEffect(() => {
-    console.log("Profile Success ===> ", profileSuccess);
     if (profileSuccess != null && profileSuccess.success === 1) {
       dispatch(depositData(profileSuccess.data.user_id));
     }

@@ -31,7 +31,6 @@ const BybitApiBinding = () => {
   }, []);
 
   useEffect(() => {
-    console.log("profileSuccessApi ===>", profileSuccess);
     if (profileSuccess != null && profileSuccess.success === 1) {
       setProfileData(profileSuccess.data);
       setApiKey(profileSuccess.data.api_key);
@@ -60,13 +59,11 @@ const BybitApiBinding = () => {
         bybit_api_key: bybitApiKey,
         bybit_secret_key: bybitSecretKey,
       };
-      console.log("Pay;load ===> ", payload);
       dispatch(updateProfileData(payload));
     }
   };
 
   useEffect(() => {
-    console.log("updateProfileSuccess ===> ", updateProfileSuccess);
     if (updateProfileSuccess != null && updateProfileSuccess.success === 1) {
       alert("Key Updated!");
       setDisabled(false);

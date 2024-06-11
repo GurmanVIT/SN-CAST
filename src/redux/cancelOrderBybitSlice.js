@@ -15,7 +15,6 @@ export const cancelOrderByBitData = createAsyncThunk(
       };
       const url = ApiBaseUrl + cancelOrderByBitApi;
       const response = await axios.put(url, payload, config);
-      console.log("Response ===> ", response.data);
       return response.data;
     } catch (error) {
       throw error.response.data;
