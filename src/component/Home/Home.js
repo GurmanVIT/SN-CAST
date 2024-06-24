@@ -6,10 +6,19 @@ import copy from "../../assets/img/copy.svg";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearProfile, profileData } from "../../redux/profileSlice";
-import { clearGetAllOpenOrders, getAllOpenOrdersData } from "../../redux/getAllOpenOrdersSlice";
-import { cancelOrderData, clearCancelOrder } from "../../redux/cancelOrderSlice";
+import {
+  clearGetAllOpenOrders,
+  getAllOpenOrdersData,
+} from "../../redux/getAllOpenOrdersSlice";
+import {
+  cancelOrderData,
+  clearCancelOrder,
+} from "../../redux/cancelOrderSlice";
 import { clearCloseTrader, closeTradeData } from "../../redux/closeTradeSlice";
-import { clearGetAllOrders, getAllOrdersData } from "../../redux/getAllOrdersSlice";
+import {
+  clearGetAllOrders,
+  getAllOrdersData,
+} from "../../redux/getAllOrdersSlice";
 import { ClipLoader } from "react-spinners";
 import { Dropdown } from "bootstrap";
 import { getAllOpenOrdersByBitApi } from "../../utils/Constants";
@@ -163,8 +172,8 @@ const Home = () => {
           ? item.triggerDirection == 0
             ? item.orderType
             : item.triggerDirection == 1
-              ? "STOP-MARKET"
-              : "TAKE-PROFIT"
+            ? "STOP-MARKET"
+            : "TAKE-PROFIT"
           : item.type,
     };
     exchangeValue == 1
@@ -218,8 +227,6 @@ const Home = () => {
 
   window.addEventListener("scroll", toggleVisible);
 
-
-
   const logout = () => {
     dispatch(clearProfile());
     dispatch(clearUpdateProfile());
@@ -234,7 +241,6 @@ const Home = () => {
       navigation(-1);
     }, 500);
   };
-
 
   return (
     <>
@@ -383,14 +389,14 @@ const Home = () => {
                       </button>
                     </div>
 
-                    {/* <select
+                    <select
                       class="form-select"
                       aria-label="Default select example"
                       onChange={(value) => setExchangeValue(value.target.value)}
                     >
                       <option value="1">Binance</option>
                       <option value="2">ByBit</option>
-                    </select> */}
+                    </select>
                   </div>
 
                   {active === 1 ? (
@@ -435,8 +441,8 @@ const Home = () => {
                                           {item.triggerDirection == 0
                                             ? item.orderType
                                             : item.triggerDirection == 1
-                                              ? "STOP-MARKET"
-                                              : "TAKE-PROFIT"}
+                                            ? "STOP-MARKET"
+                                            : "TAKE-PROFIT"}
                                         </p>
                                       </div>
                                     </div>
