@@ -172,8 +172,8 @@ const Home = () => {
           ? item.triggerDirection == 0
             ? item.orderType
             : item.triggerDirection == 1
-            ? "STOP-MARKET"
-            : "TAKE-PROFIT"
+              ? "STOP-MARKET"
+              : "TAKE-PROFIT"
           : item.type,
     };
     exchangeValue == 1
@@ -241,6 +241,7 @@ const Home = () => {
       navigation(-1);
     }, 500);
   };
+
 
   return (
     <>
@@ -441,8 +442,8 @@ const Home = () => {
                                           {item.triggerDirection == 0
                                             ? item.orderType
                                             : item.triggerDirection == 1
-                                            ? "STOP-MARKET"
-                                            : "TAKE-PROFIT"}
+                                              ? "STOP-MARKET"
+                                              : "TAKE-PROFIT"}
                                         </p>
                                       </div>
                                     </div>
