@@ -37,6 +37,12 @@ const ApiBinding = () => {
       setSecretKey(profileSuccess.data.secret_key);
       setByBitApiKey(profileSuccess.data.bybit_api_key);
       setByBitSecretKey(profileSuccess.data.bybit_secret_key);
+      if (
+        profileSuccess.data.api_key == null ||
+        profileSuccess.data.api_key == ""
+      ) {
+        setDisabled(true);
+      }
     }
   }, [profileSuccess]);
 
