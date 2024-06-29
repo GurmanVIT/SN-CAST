@@ -30,6 +30,12 @@ const ApiBinding = () => {
     dispatch(profileData(id));
   }, []);
 
+  const onDisabled = (e) => {
+    setDisabled(true);
+    setApiKey("");
+    setSecretKey("");
+  };
+
   useEffect(() => {
     if (profileSuccess != null && profileSuccess.success === 1) {
       setProfileData(profileSuccess.data);
@@ -261,16 +267,8 @@ const ApiBinding = () => {
             ) : (
               <div className="row mt-4">
                 <div className="col">
-                  <button
-                    type="button"
-                    className="replace-btn"
-                    onClick={() => setDisabled(true)}
+                  <button type="button" className="unbind-btn" onClick={() => onDisabled()}
                   >
-                    Replace
-                  </button>
-                </div>
-                <div className="col">
-                  <button type="button" className="unbind-btn">
                     Unbind
                   </button>
                 </div>

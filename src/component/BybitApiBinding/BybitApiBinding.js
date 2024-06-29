@@ -63,6 +63,12 @@ const BybitApiBinding = () => {
     }
   };
 
+  const onDisabled = (e) => {
+    setDisabled(true);
+    setByBitApiKey("");
+    setByBitSecretKey("");
+  };
+
   useEffect(() => {
     if (updateProfileSuccess != null && updateProfileSuccess.success === 1) {
       alert("Key Updated!");
@@ -255,16 +261,7 @@ const BybitApiBinding = () => {
             ) : (
               <div className="row mt-4">
                 <div className="col">
-                  <button
-                    type="button"
-                    className="replace-btn"
-                    onClick={() => setDisabled(true)}
-                  >
-                    Replace
-                  </button>
-                </div>
-                <div className="col">
-                  <button type="button" className="unbind-btn">
+                  <button type="button" className="unbind-btn" onClick={() => onDisabled()}>
                     Unbind
                   </button>
                 </div>
