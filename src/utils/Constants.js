@@ -1,5 +1,5 @@
 //BASE URL
-export const ApiBaseUrl = "http://sn-cast-api.sparcknet.com:3001/";
+export const ApiBaseUrl = "https://sn-cast-api.sparcknet.com/";
 // export const ApiBaseUrl = "https://dev.memate.com.au/api/v1";
 
 //Api Names
