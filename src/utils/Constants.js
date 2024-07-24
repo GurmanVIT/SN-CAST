@@ -1,5 +1,5 @@
 //BASE URL
-export const ApiBaseUrl = "https://bot.cryptokity.com/";
+export const ApiBaseUrl = "http://sn-cast-api.sparcknet.com:3100/";
 
 //Api Names
 
