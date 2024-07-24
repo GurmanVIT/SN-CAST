@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { loginData } from "../../redux/loginSlice";
 import { ClipLoader } from "react-spinners";
+import axios from "axios";
 
 const Login = () => {
   const navigation = useNavigate();
@@ -44,6 +45,31 @@ const Login = () => {
       //   password: password,
       // };
       dispatch(loginData(payload));
+      //   let data = JSON.stringify({
+      //     email: "autonuke@gmail.com",
+      //     password: 7924,
+      //   });
+
+      //   let config = {
+      //     method: "post",
+      //     maxBodyLength: Infinity,
+      //     url: "https://dev.memate.com.au/api/v1/m/login/",
+      //     mode: "no-cors",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       // "Access-Control-Allow-Origin": "*",
+      //     },
+      //     data: data,
+      //   };
+
+      //   axios
+      //     .request(config)
+      //     .then((response) => {
+      //       console.log(JSON.stringify(response.data));
+      //     })
+      //     .catch((error) => {
+      //       console.log(error);
+      //     });
     }
   };
 
