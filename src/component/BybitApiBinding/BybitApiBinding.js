@@ -182,13 +182,13 @@ const BybitApiBinding = () => {
                             src={copy_red}
                             alt="copy_red"
                             onClick={() => {
-                              navigator.clipboard.writeText("206.189.132.34");
+                              navigator.clipboard.writeText("165.232.181.116");
                               alert("Address Copy");
                             }}
                             style={{ cursor: "pointer" }}
                           />
                           <p className="form-control form-control-cus">
-                            206.189.132.34
+                            165.232.181.116
                           </p>
                         </div>
                       </div>
